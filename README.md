@@ -244,8 +244,6 @@ Model      | MAE= 3.082 | RMSE= 4.338 | R2= 0.877
 Perbaikan MAE terhadap baseline: 67.71 persen
 ```
 
-Makna yang perlu kamu sampaikan:
-
 - Baseline hanyalah pembanding sederhana.
 - Model memberi performa yang jauh lebih baik.
 - Risk Score sudah siap dipakai sebagai service, bukan hanya eksperimen notebook.
