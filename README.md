@@ -31,13 +31,6 @@ Artinya, deliverable CP2 yang paling penting bukan raw data mentah, melainkan ha
 - Feature reference untuk fallback model tersedia di [data/processed/grid_feature_reference.csv](data/processed/grid_feature_reference.csv).
 - API utama sudah tersedia dan tervalidasi lewat test suite.
 
-### Yang perlu ditunjukkan saat demo CP2
-
-- Output notebook yang membandingkan baseline vs model.
-- Swagger UI di `/docs`.
-- Endpoint `/risk-score`, `/heatmap`, `/safe-commute`, dan `/locations`.
-- Hasil `pytest tests -q`.
-
 ## Arsitektur Runtime
 
 Alur runtime sistem sederhana:
@@ -231,13 +224,7 @@ Hasil yang diharapkan:
 
 Ini menunjukkan endpoint utama, validasi input, dan helper logic berjalan.
 
-## CP2 Submission Package
-
-Bagian ini adalah format yang sebaiknya dipakai saat mengumpulkan CP2. Fokusnya adalah membuktikan dua hal: proses training sudah selesai dan REST API benar-benar bisa dipakai.
-
-### A. Yang Harus Ditunjukkan Saat Demo
-
-Urutan demo yang paling aman:
+### A. Urutan Demo
 
 1. Buka [notebooks/model_training_baseline_comparison.ipynb](notebooks/model_training_baseline_comparison.ipynb).
 2. Tunjukkan output perbandingan baseline vs model.
@@ -249,9 +236,7 @@ Urutan demo yang paling aman:
 8. Demo endpoint `/locations`.
 9. Tunjukkan hasil `pytest tests -q`.
 
-### B. Output Notebook yang Wajib Masuk Bukti
-
-Ambil screenshot atau cuplikan output dari notebook training yang menampilkan metrik berikut:
+### B. Output Notebook 
 
 ```text
 Baseline   | MAE= 9.546 | RMSE=12.391 | R2=-0.000
@@ -265,9 +250,7 @@ Makna yang perlu kamu sampaikan:
 - Model memberi performa yang jauh lebih baik.
 - Risk Score sudah siap dipakai sebagai service, bukan hanya eksperimen notebook.
 
-### C. Artefak yang Harus Disertakan
-
-File yang paling relevan untuk disubmit:
+### C. Artefak 
 
 - [notebooks/model_training_baseline_comparison.ipynb](notebooks/model_training_baseline_comparison.ipynb)
 - [models/risk_model_v1.joblib](models/risk_model_v1.joblib)
@@ -276,11 +259,10 @@ File yang paling relevan untuk disubmit:
 - [data/processed/features_labels_events.csv](data/processed/features_labels_events.csv)
 - [tests/test_api_endpoints.py](tests/test_api_endpoints.py)
 
-Kalau dikumpulkan dalam zip, pastikan isi utamanya adalah source code, model/artifacts, dan bukti presentasi/hasil, bukan raw data mentah.
 
-### D. Bukti Teknis yang Bisa Ditampilkan
+### D. Bukti Teknis 
 
-Sertakan hasil test suite berikut sebagai verifikasi:
+Hasil test suite
 
 ```bash
 pytest tests -q
@@ -294,36 +276,3 @@ Target output:
 
 Ini membuktikan endpoint utama, validasi input, dan helper logic berjalan dengan baik.
 
-### E. Paket Submission yang Rapi
-
-Jika ingin menyusun folder submit, struktur yang paling masuk akal adalah:
-
-- source code repository,
-- model dan processed artifacts,
-- screenshot atau PDF hasil demo,
-- notebook training sebagai bukti proses,
-- hasil test suite.
-
-### F. Ringkasan Narasi Saat Submit
-
-Kalimat inti yang aman dipakai saat presentasi:
-
-"Saya membangun sistem Risk Score end-to-end: mulai dari pseudo-labeling dan training, lalu membandingkannya dengan baseline, kemudian men-deploy hasilnya sebagai REST API yang bisa dikonsumsi front-end."
-
-"Hasil model menunjukkan peningkatan yang signifikan dibanding baseline, dan API sudah tervalidasi lewat test suite serta Swagger UI."
-
-## Catatan Penting
-
-- Repository ini sudah fokus pada serving hasil pipeline, bukan menjalankan raw notebook saat runtime.
-- Swagger UI aktif lewat FastAPI, jadi demo paling cepat adalah lewat `/docs`.
-- Jika port 8000 sedang dipakai proses lain, matikan proses tersebut sebelum menjalankan Uvicorn lagi.
-- Risk Score adalah estimasi berbasis pola historis, bukan kepastian kejadian.
-
-## Next Step Setelah CP2
-
-Setelah CP2 selesai, pengembangan berikutnya adalah:
-
-- continual learning yang lebih lengkap,
-- versioning model yang lebih formal,
-- monitoring yang lebih kaya,
-- dokumentasi final dan presentasi.
