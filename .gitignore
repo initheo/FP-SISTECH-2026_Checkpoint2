@@ -1,0 +1,10 @@
+data/raw/
+data/processed/features_labels_events.csv
+__pycache__/
+*.pyc
+.pytest_cache/
+.venv/
+venv/
+logs/
+outputs/
+.ipynb_checkpoints/
