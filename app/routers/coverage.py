@@ -1,4 +1,3 @@
-# app/routers/coverage.py
 from fastapi import APIRouter
 
 from app.loader import GRID_FEATURES
