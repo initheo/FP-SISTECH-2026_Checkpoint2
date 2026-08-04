@@ -5,6 +5,15 @@ from app.main import app
 client = TestClient(app)
 
 
+def test_api_overview_returns_endpoint_list():
+    response = client.get("/api")
+    assert response.status_code == 200
+    body = response.json()
+    assert body["message"] == "Chicago Risk Score API"
+    assert body["scope"] == "Chicago only"
+    assert "GET /locations" in body["endpoints"]
+
+
 def test_risk_score_returns_valid_response():
     response = client.get(
         "/risk-score",

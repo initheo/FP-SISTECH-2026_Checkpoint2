@@ -6,7 +6,7 @@ import numpy as np
 import pandas as pd
 from fastapi import HTTPException
 
-from app.config import GRID_DECIMALS, FEATURE_COLUMNS, LOG_PATH
+from app.config import GRID_DECIMALS, FEATURE_COLUMNS, LOG_PATH, EARTH_RADIUS_M
 from app.loader import GRID_FEATURES, MODEL, NEAREST_GRID_TREE
 
 
@@ -81,3 +81,13 @@ def log_risk_score_request(lat: float, lon: float, dt: datetime, score: float, s
             'risk_score': round(float(score), 2),
             'source': source,
         })
+
+
+MAX_FALLBACK_DISTANCE_M = 3000  # di luar radius ini dari grid Chicago terdekat, dianggap tidak tercakup
+
+
+def is_within_coverage(lat: float, lon: float) -> bool:
+    query = np.radians([[lat, lon]])
+    dist_rad, _ = NEAREST_GRID_TREE.query(query, k=1)
+    dist_m = dist_rad[0][0] * EARTH_RADIUS_M
+    return dist_m <= MAX_FALLBACK_DISTANCE_M

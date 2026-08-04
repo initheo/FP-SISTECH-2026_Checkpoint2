@@ -18,3 +18,11 @@ FEATURE_COLUMNS = [
     'is_weekend', 'grid_crime_count', 'grid_arrest_rate',
     'grid_theft_share', 'grid_narcotics_share', 'Latitude', 'Longitude',
 ]
+
+CP3_BATCH_COUNT = 4
+CP3_DRIFT_THRESHOLD = 0.15
+CP3_QUALITY_GATE = 0.05
+CP3_RANDOM_STATE = 42
+
+_cors_origins = os.getenv('CORS_ALLOW_ORIGINS', 'http://localhost:3000,http://localhost:5173')
+CORS_ALLOW_ORIGINS = [origin.strip() for origin in _cors_origins.split(',') if origin.strip()]

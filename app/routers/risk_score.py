@@ -12,8 +12,6 @@ from app.utils import (
 )
 
 router = APIRouter()
-
-
 @router.get("/risk-score", response_model=RiskScoreResponse)
 def get_risk_score(
     lat: float = Query(...),
