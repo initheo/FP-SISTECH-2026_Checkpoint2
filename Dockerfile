@@ -17,10 +17,11 @@ RUN pip install --upgrade pip \
 COPY app ./app
 COPY models ./models
 COPY data/processed ./data/processed
-COPY logs ./logs
+RUN mkdir -p logs
 COPY scripts ./scripts
 COPY README.md ./README.md
 
 EXPOSE 8000
 
 CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
+
