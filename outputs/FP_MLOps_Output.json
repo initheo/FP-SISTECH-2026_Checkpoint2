@@ -1,0 +1,133 @@
+{
+  "metadata": {
+    "generated_at": "2026-08-07T22:45:48.435315",
+    "model_version": "v1",
+    "last_updated": "2026-07-30",
+    "description": "Output prediksi Risk Score untuk landmark-landmark utama di Chicago. Skor dihasilkan dari sistem Chicago Risk Score API menggunakan lookup table berbasis pola kejahatan historis (2001-2024). Skor 0-100 merupakan estimasi, bukan prediksi kepastian kejadian.",
+    "disclaimer": "Skor ini merupakan estimasi berbasis pola kejahatan historis di Chicago, bukan prediksi kepastian suatu kejadian. Gunakan sebagai referensi, bukan satu-satunya acuan keputusan.",
+    "source_dataset": "Chicago Crimes (City of Chicago Data Portal)",
+    "endpoint_used": "GET /risk-score?lat=...&lon=...&datetime=..."
+  },
+  "predictions": [
+    {
+      "location_name": "Millennium Park",
+      "lat": 41.8826,
+      "lon": -87.6226,
+      "datetime": "2026-07-30T14:00:00",
+      "risk_score": 100.0,
+      "level": "Very High",
+      "source": "lookup_table",
+      "note": null,
+      "model_version": "v1",
+      "last_updated": "2026-07-30"
+    },
+    {
+      "location_name": "Navy Pier",
+      "lat": 41.8917,
+      "lon": -87.6086,
+      "datetime": "2026-07-30T14:00:00",
+      "risk_score": 82.2,
+      "level": "Very High",
+      "source": "lookup_table",
+      "note": null,
+      "model_version": "v1",
+      "last_updated": "2026-07-30"
+    },
+    {
+      "location_name": "Willis Tower",
+      "lat": 41.8789,
+      "lon": -87.6359,
+      "datetime": "2026-07-30T14:00:00",
+      "risk_score": 99.99,
+      "level": "Very High",
+      "source": "lookup_table",
+      "note": null,
+      "model_version": "v1",
+      "last_updated": "2026-07-30"
+    },
+    {
+      "location_name": "Wrigley Field",
+      "lat": 41.9484,
+      "lon": -87.6553,
+      "datetime": "2026-07-30T21:00:00",
+      "risk_score": 87.19,
+      "level": "Very High",
+      "source": "lookup_table",
+      "note": null,
+      "model_version": "v1",
+      "last_updated": "2026-07-30"
+    },
+    {
+      "location_name": "University of Chicago",
+      "lat": 41.7897,
+      "lon": -87.5997,
+      "datetime": "2026-07-30T09:00:00",
+      "risk_score": 64.71,
+      "level": "High",
+      "source": "lookup_table",
+      "note": null,
+      "model_version": "v1",
+      "last_updated": "2026-07-30"
+    },
+    {
+      "location_name": "Logan Square",
+      "lat": 41.9215,
+      "lon": -87.7096,
+      "datetime": "2026-07-30T22:00:00",
+      "risk_score": 80.16,
+      "level": "Very High",
+      "source": "lookup_table",
+      "note": null,
+      "model_version": "v1",
+      "last_updated": "2026-07-30"
+    },
+    {
+      "location_name": "Englewood (high-crime area)",
+      "lat": 41.7795,
+      "lon": -87.6509,
+      "datetime": "2026-07-30T01:00:00",
+      "risk_score": 72.16,
+      "level": "High",
+      "source": "lookup_table",
+      "note": null,
+      "model_version": "v1",
+      "last_updated": "2026-07-30"
+    },
+    {
+      "location_name": "O'Hare International Airport",
+      "lat": 41.9742,
+      "lon": -87.9073,
+      "datetime": "2026-07-30T06:00:00",
+      "risk_score": 51.1,
+      "level": "High",
+      "source": "lookup_table",
+      "note": null,
+      "model_version": "v1",
+      "last_updated": "2026-07-30"
+    },
+    {
+      "location_name": "Chicago Loop (Friday night)",
+      "lat": 41.8858,
+      "lon": -87.6181,
+      "datetime": "2026-08-01T23:00:00",
+      "risk_score": 100.0,
+      "level": "Very High",
+      "source": "lookup_table",
+      "note": null,
+      "model_version": "v1",
+      "last_updated": "2026-07-30"
+    },
+    {
+      "location_name": "Chicago Loop (Monday morning)",
+      "lat": 41.8858,
+      "lon": -87.6181,
+      "datetime": "2026-08-03T08:00:00",
+      "risk_score": 100.0,
+      "level": "Very High",
+      "source": "lookup_table",
+      "note": null,
+      "model_version": "v1",
+      "last_updated": "2026-07-30"
+    }
+  ]
+}

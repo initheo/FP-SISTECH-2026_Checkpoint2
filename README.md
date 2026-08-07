@@ -114,7 +114,9 @@ Contoh response:
 		"GET /heatmap",
 		"GET /safe-commute",
 		"GET /locations",
-		"GET /model-metrics"
+		"GET /coverage",
+		"GET /model-metrics",
+		"GET /prediction-stats"
 	]
 }
 ```
@@ -155,7 +157,8 @@ Response berisi:
 - `level`
 - `model_version`
 - `last_updated`
-- `source`
+- `source` — `lookup_table` atau `model_fallback`
+- `disclaimer` — pernyataan etis bahwa skor adalah estimasi, bukan prediksi kepastian kejadian
 
 #### `GET /heatmap`
 
@@ -188,25 +191,6 @@ Contoh:
 GET /safe-commute?lat_start=41.88&lon_start=-87.63&lat_end=41.90&lon_end=-87.60&datetime=2026-07-30T14:00:00
 ```
 
-Endpoint ini membandingkan beberapa opsi waktu keberangkatan dan memilih rekomendasi dengan risk score rata-rata terendah.
-
-#### `GET /locations`
-
-Mengembalikan daftar lokasi statis untuk kebutuhan dropdown atau pemetaan UI.
-
-#### `GET /health`
-
-Health check sederhana untuk memastikan service hidup.
-
-#### `GET /model-metrics`
-
-Endpoint monitoring ringan untuk melihat metadata model versioning.
-
-### Cara menjalankan API lokal
-
-Aktifkan virtual environment lalu jalankan:
-
-```bash
 python -m uvicorn app.main:app --reload
 ```
 
