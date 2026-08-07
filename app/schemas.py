@@ -15,6 +15,8 @@ class HeatmapPoint(BaseModel):
     lat: float
     lon: float
     risk_score: float
+    risk_level: str
+    risk_percentile: float
 
 
 class HeatmapResponse(BaseModel):

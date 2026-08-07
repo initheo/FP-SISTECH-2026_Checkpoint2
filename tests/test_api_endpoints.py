@@ -40,6 +40,8 @@ def test_heatmap_returns_points_for_valid_datetime():
     body = response.json()
     assert body["point_count"] == len(body["points"])
     assert body["point_count"] > 0
+    assert body["points"][0]["risk_level"] in {"Low", "Medium", "High", "Very High"}
+    assert 0 <= body["points"][0]["risk_percentile"] <= 100
 
 
 def test_safe_commute_returns_recommended_option():
