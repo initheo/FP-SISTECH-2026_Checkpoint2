@@ -40,6 +40,8 @@ def test_heatmap_returns_points_for_valid_datetime():
     body = response.json()
     assert body["point_count"] == len(body["points"])
     assert body["point_count"] > 0
+    assert body["points"][0]["risk_level"] in {"Low", "Medium", "High", "Very High"}
+    assert 0 <= body["points"][0]["risk_percentile"] <= 100
 
 
 def test_safe_commute_returns_recommended_option():
@@ -76,3 +78,33 @@ def test_model_metrics_returns_list_payload():
     body = response.json()
     assert "model_versions" in body
     assert isinstance(body["model_versions"], list)
+
+
+def test_coverage_returns_bounding_box():
+    response = client.get("/coverage")
+    assert response.status_code == 200
+    body = response.json()
+    assert "bounding_box" in body
+    bounding_box = body["bounding_box"]
+    assert "lat_min" in bounding_box
+    assert "lat_max" in bounding_box
+    assert bounding_box["lat_max"] > bounding_box["lat_min"]
+
+
+def test_prediction_stats_returns_summary():
+    response = client.get("/prediction-stats")
+    assert response.status_code == 200
+    body = response.json()
+    assert "total_requests" in body
+    assert isinstance(body["total_requests"], int)
+
+
+def test_risk_score_response_has_disclaimer():
+    response = client.get(
+        "/risk-score",
+        params={"lat": 41.86, "lon": -87.67, "datetime": "2026-07-30T00:00:00"},
+    )
+    assert response.status_code == 200
+    body = response.json()
+    assert "disclaimer" in body
+    assert len(body["disclaimer"]) > 0

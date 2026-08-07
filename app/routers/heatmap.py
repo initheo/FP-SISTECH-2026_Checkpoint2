@@ -2,7 +2,7 @@ from fastapi import APIRouter, Query
 
 from app.loader import LOOKUP
 from app.schemas import HeatmapResponse
-from app.utils import parse_datetime_or_400
+from app.utils import parse_datetime_or_400, score_to_level
 
 router = APIRouter()
 
@@ -13,9 +13,16 @@ def get_heatmap(datetime_value: str = Query(..., alias="datetime")):
     dow, hour = dt.weekday(), dt.hour
 
     subset = LOOKUP[(LOOKUP['dow'] == dow) & (LOOKUP['hour'] == hour)]
-    points = [
-        {"lat": row.grid_lat, "lon": row.grid_lon, "risk_score": round(row.risk_score, 2)}
-        for row in subset.itertuples()
-    ]
+    percentile_values = subset['risk_score'].rank(pct=True)
+    points = []
+    for row, percentile in zip(subset.itertuples(), percentile_values):
+        score = float(row.risk_score)
+        points.append({
+            "lat": row.grid_lat,
+            "lon": row.grid_lon,
+            "risk_score": round(score, 2),
+            "risk_level": score_to_level(score),
+            "risk_percentile": round(float(percentile * 100), 2),
+        })
 
     return {"datetime": datetime_value, "point_count": len(points), "points": points}

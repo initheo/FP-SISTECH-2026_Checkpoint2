@@ -2,6 +2,11 @@ from typing import List
 
 from pydantic import BaseModel
 
+RISK_SCORE_DISCLAIMER = (
+    "Skor ini merupakan estimasi berbasis pola kejahatan historis di Chicago, "
+    "bukan prediksi kepastian suatu kejadian. Gunakan sebagai referensi, bukan satu-satunya acuan keputusan."
+)
+
 
 class RiskScoreResponse(BaseModel):
     risk_score: float
@@ -9,12 +14,15 @@ class RiskScoreResponse(BaseModel):
     model_version: str
     last_updated: str
     source: str
+    disclaimer: str
 
 
 class HeatmapPoint(BaseModel):
     lat: float
     lon: float
     risk_score: float
+    risk_level: str
+    risk_percentile: float
 
 
 class HeatmapResponse(BaseModel):

@@ -2,7 +2,7 @@ from fastapi import APIRouter, Query
 
 from app.config import MODEL_VERSION, LAST_UPDATED
 from app.loader import LOOKUP
-from app.schemas import RiskScoreResponse
+from app.schemas import RiskScoreResponse, RISK_SCORE_DISCLAIMER
 from app.utils import (
     to_grid_id,
     score_to_level,
@@ -12,6 +12,8 @@ from app.utils import (
 )
 
 router = APIRouter()
+
+
 @router.get("/risk-score", response_model=RiskScoreResponse)
 def get_risk_score(
     lat: float = Query(...),
@@ -39,4 +41,5 @@ def get_risk_score(
         "model_version": MODEL_VERSION,
         "last_updated": LAST_UPDATED,
         "source": source,
+        "disclaimer": RISK_SCORE_DISCLAIMER,
     }
