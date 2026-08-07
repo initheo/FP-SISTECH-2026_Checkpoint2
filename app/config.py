@@ -24,5 +24,5 @@ CP3_DRIFT_THRESHOLD = 0.15
 CP3_QUALITY_GATE = 0.05
 CP3_RANDOM_STATE = 42
 
-_cors_origins = os.getenv('CORS_ALLOW_ORIGINS', 'http://localhost:3000,http://localhost:5173')
+_cors_origins = os.getenv('CORS_ALLOW_ORIGINS', 'http://localhost:3000,http://localhost:5173,https://sistech-26-finpro-g7.vercel.app,*')
 CORS_ALLOW_ORIGINS = [origin.strip() for origin in _cors_origins.split(',') if origin.strip()]
