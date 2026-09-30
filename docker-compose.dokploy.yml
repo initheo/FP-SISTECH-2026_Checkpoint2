@@ -1,0 +1,22 @@
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    environment:
+      CORS_ALLOW_ORIGINS: ${CORS_ALLOW_ORIGINS:-*}
+    expose:
+      - "8000"
+    networks:
+      - dokploy-network
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.fp-sistech.rule=Host(`fp-sistech.neoartd.my.id`)"
+      - "traefik.http.routers.fp-sistech.entrypoints=websecure"
+      - "traefik.http.routers.fp-sistech.tls.certresolver=letsencrypt"
+      - "traefik.http.services.fp-sistech.loadbalancer.server.port=8000"
+
+networks:
+  dokploy-network:
+    external: true
